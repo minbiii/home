@@ -221,6 +221,38 @@
     height:auto;
   }
 
+  /* 강아지 산책 모션 */
+  .dog{
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: dogBob 1s ease-in-out infinite;
+  }
+  .dog-cheese{ animation-delay: .12s; }
+  .tail{
+    transform-box: fill-box;
+    transform-origin: 0% 60%;
+    animation: tailWag .4s ease-in-out infinite;
+  }
+  .dog-cheese .tail{ animation-duration: .32s; }
+  .dog-label{
+    opacity: 0;
+    animation: labelIn .6s ease forwards;
+  }
+  @keyframes dogBob{
+    0%, 100%{ transform: translateY(0) rotate(0deg); }
+    25%{ transform: translateY(-5px) rotate(-1.5deg); }
+    50%{ transform: translateY(0) rotate(0deg); }
+    75%{ transform: translateY(-3.5px) rotate(1.5deg); }
+  }
+  @keyframes tailWag{
+    0%, 100%{ transform: rotate(0deg); }
+    50%{ transform: rotate(22deg); }
+  }
+  @keyframes labelIn{
+    from{ opacity:0; transform: translateY(4px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
   .reveal{
     opacity:0;
     transform: translateY(24px);
@@ -344,7 +376,7 @@
   <div class="about-text reveal">
     <p class="eyebrow">About Me</p>
     <h2>강아지와 함께,<br>느긋한 여름 산책</h2>
-    <p>더운 여름, 해가 살짝 기울기 시작하는 저녁이면 강아지와 함께 동네를 걷습니다. 바람에 실려 오는 여름 냄새와 강아지의 신난 발걸음을 보는 게 하루 중 가장 좋아하는 순간이에요.</p>
+    <p>더운 여름, 해가 살짝 기울기 시작하는 저녁이면 저희 집 강아지 <strong>크림</strong>, <strong>치즈</strong>와 함께 동네를 걷습니다. 바람에 실려 오는 여름 냄새와 신나게 앞서가는 두 녀석의 발걸음을 보는 게 하루 중 가장 좋아하는 순간이에요.</p>
     <p>바쁜 하루 속에서도 이 짧은 산책이 저에게는 작은 바다처럼 느껴집니다. 천천히, 그리고 시원하게.</p>
     <dl class="facts">
       <div class="fact">
@@ -355,6 +387,10 @@
         <dt>Hobby</dt>
         <dd>강아지 산책</dd>
       </div>
+      <div class="fact">
+        <dt>My Dogs</dt>
+        <dd>크림 &amp; 치즈</dd>
+      </div>
     </dl>
   </div>
   <div class="illustration reveal">
@@ -363,16 +399,29 @@
       <circle cx="300" cy="120" r="46" fill="#FFC46B" opacity="0.85"/>
       <path d="M40 300 C 120 260, 300 260, 380 300 L 380 420 L 40 420 Z" fill="#BEE3F0"/>
       <path d="M40 320 C 120 285, 300 285, 380 320 L 380 420 L 40 420 Z" fill="#6FC6E8"/>
-      <!-- dog -->
-      <g transform="translate(150,255)">
+      <!-- 치즈 (뒤, 노란빛) -->
+      <g class="dog dog-cheese" transform="translate(205,268) scale(0.78)">
         <ellipse cx="60" cy="70" rx="46" ry="20" fill="#0B3954" opacity="0.08"/>
-        <path d="M10 55 Q0 20 30 15 Q40 -5 65 5 Q90 -5 95 20 Q120 25 110 55 Q120 65 105 72 Q95 85 75 78 Q60 85 45 78 Q25 85 15 72 Q0 65 10 55 Z" fill="#0E7C9E"/>
+        <path d="M10 55 Q0 20 30 15 Q40 -5 65 5 Q90 -5 95 20 Q120 25 110 55 Q120 65 105 72 Q95 85 75 78 Q60 85 45 78 Q25 85 15 72 Q0 65 10 55 Z" fill="#FFC94D"/>
         <circle cx="30" cy="28" r="5" fill="#0B3954"/>
-        <path d="M18 18 Q10 0 22 -6 Q28 4 24 18 Z" fill="#0E7C9E"/>
-        <path d="M42 12 Q40 -6 54 -8 Q56 6 48 16 Z" fill="#0E7C9E"/>
-        <path d="M108 45 Q128 32 122 18" stroke="#0E7C9E" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M18 18 Q10 0 22 -6 Q28 4 24 18 Z" fill="#FFC94D"/>
+        <path d="M42 12 Q40 -6 54 -8 Q56 6 48 16 Z" fill="#FFC94D"/>
+        <path class="tail" d="M108 45 Q128 32 122 18" stroke="#FFC94D" stroke-width="8" fill="none" stroke-linecap="round"/>
       </g>
-      <!-- leash line to a little heart -->
+      <text class="dog-label" x="255" y="330" text-anchor="middle" style="font-family:var(--font-display); font-size:13px; fill:#B8802E; animation-delay:.9s;">치즈</text>
+
+      <!-- 크림 (앞, 크림빛) -->
+      <g class="dog dog-cream" transform="translate(140,250)">
+        <ellipse cx="60" cy="70" rx="46" ry="20" fill="#0B3954" opacity="0.08"/>
+        <path d="M10 55 Q0 20 30 15 Q40 -5 65 5 Q90 -5 95 20 Q120 25 110 55 Q120 65 105 72 Q95 85 75 78 Q60 85 45 78 Q25 85 15 72 Q0 65 10 55 Z" fill="#F3D9B1"/>
+        <circle cx="30" cy="28" r="5" fill="#0B3954"/>
+        <path d="M18 18 Q10 0 22 -6 Q28 4 24 18 Z" fill="#F3D9B1"/>
+        <path d="M42 12 Q40 -6 54 -8 Q56 6 48 16 Z" fill="#F3D9B1"/>
+        <path class="tail" d="M108 45 Q128 32 122 18" stroke="#F3D9B1" stroke-width="8" fill="none" stroke-linecap="round"/>
+      </g>
+      <text class="dog-label" x="195" y="345" text-anchor="middle" style="font-family:var(--font-display); font-size:14px; fill:var(--color-deep); animation-delay:.7s;">크림</text>
+
+      <!-- leash line -->
       <path d="M150 300 Q120 280 95 290" stroke="#0B3954" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.5"/>
     </svg>
   </div>
